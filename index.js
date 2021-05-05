@@ -4,12 +4,21 @@ const app = express();
 
 const port = 3000
 
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.get('/', (req, res) => {
     res.send('root')
 })
 
 app.get('/hello', (req, res) => {
     res.send('Hello World!')
+})
+
+app.post('/searchImagesByText', (req, res) => {
+    let search_terms = req.body;
+    search_terms = search_terms.search_terms;
+    search_terms = search_terms.split(" ");
+    res.send(search_terms)
 })
 
 app.listen(port, () => {
