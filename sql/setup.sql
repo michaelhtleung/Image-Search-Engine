@@ -1,3 +1,4 @@
+DROP DATABASE shopify;
 CREATE DATABASE shopify;
 USE shopify;
 
@@ -20,50 +21,54 @@ CREATE TABLE image(
 	FOREIGN KEY (author_id)
 		REFERENCES user(id)
 );
-INSERT INTO image(
-	author_id, 
-	uri, 
-	public, 
-	pixels_width, 
-	pixels_height,
-	datetime_upload) 
-values (
-	1, 
-	'a',
-	1,
-	100,
-	1000,
-	'1998-01-23 12:45:56'
-	);
-INSERT INTO image(
-	author_id, 
-	uri, 
-	public, 
-	pixels_width, 
-	pixels_height,
-	datetime_upload) 
-values (
-	2, 
-	'b',
-	0,
-	200,
-	2000,
-	'2010-12-31 01:15:00'
-	);
+-- INSERT INTO image(
+-- 	author_id,
+-- 	uri,
+-- 	public,
+-- 	pixels_width,
+-- 	pixels_height,
+-- 	datetime_upload)
+-- values (
+-- 	1,
+-- 	'a',
+-- 	1,
+-- 	100,
+-- 	1000,
+-- 	'1998-01-23 12:45:56'
+-- 	);
+-- INSERT INTO image(
+-- 	author_id,
+-- 	uri,
+-- 	public,
+-- 	pixels_width,
+-- 	pixels_height,
+-- 	datetime_upload)
+-- values (
+-- 	2,
+-- 	'b',
+-- 	0,
+-- 	200,
+-- 	2000,
+-- 	'2010-12-31 01:15:00'
+-- 	);
 
 CREATE TABLE search_term(
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	term VARCHAR(255)
+	id INT NOT NULL AUTO_INCREMENT,
+	term VARCHAR(255),
+ 	PRIMARY KEY (id),
+ 	UNIQUE KEY (term)
 );
-INSERT INTO search_term (term) values ('apple');
-INSERT INTO search_term (term) values ('banana');
-INSERT INTO search_term (term) values ('carrot');
-INSERT INTO search_term (term) values ('doritos');
+-- INSERT INTO search_term (term) values ('apple');
+-- INSERT INTO search_term (term) values ('banana');
+-- INSERT INTO search_term (term) values ('carrot');
+-- INSERT INTO search_term (term) values ('doritos');
 
 CREATE TABLE images_search_terms(
-	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	id INT NOT NULL AUTO_INCREMENT,
 	image_id INT,
 	search_term_id INT,
+    PRIMARY KEY (id),
+    CONSTRAINT unique_join UNIQUE (image_id, search_term_id),
     CONSTRAINT fk_image
 	FOREIGN KEY (image_id)
 		REFERENCES image(id),
@@ -71,7 +76,7 @@ CREATE TABLE images_search_terms(
 	FOREIGN KEY (search_term_id)
 		REFERENCES search_term(id)
 );
-INSERT INTO images_search_terms(image_id, search_term_id ) values (1, 1);
-INSERT INTO images_search_terms(image_id, search_term_id ) values (1, 2);
-INSERT INTO images_search_terms(image_id, search_term_id ) values (2, 2);
-INSERT INTO images_search_terms(image_id, search_term_id ) values (2, 3);
+-- INSERT INTO images_search_terms(image_id, search_term_id ) values (1, 1);
+-- INSERT INTO images_search_terms(image_id, search_term_id ) values (1, 2);
+-- INSERT INTO images_search_terms(image_id, search_term_id ) values (2, 2);
+-- INSERT INTO images_search_terms(image_id, search_term_id ) values (2, 3);
