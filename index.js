@@ -1,33 +1,46 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
+// mysql set up
+var mysql = require('mysql');
+const fs = require('fs');
+let rawdata = fs.readFileSync('./credentials/shopify_login.json');
+let config = JSON.parse(rawdata);
+var db = mysql.createConnection(config);
+db.connect(function(err) {
+    if (err) throw err;
 
-const port = 3000
+    // custom packages
+    const helpers = require('./helpers')
 
-app.use(bodyParser.urlencoded({ extended: true }));
+    // web server packages
+    const express = require('express');
+    const bodyParser = require('body-parser');
+    const app = express();
+    const port = 3000
 
-app.get('/', (req, res) => {
-    res.send('root')
-})
+    // Imports the Google Cloud client library
+    const {Storage} = require('@google-cloud/storage');
+    const storage_client = new Storage();
 
-app.post('/searchImagesByText', (req, res) => {
-    let search_terms = req.body;
-    search_terms = search_terms.search_terms;
-    search_terms = search_terms.split(" ");
+    app.use(bodyParser.urlencoded({ extended: true }));
 
-    // query = helpers.build_sql_query(search_terms)
-    // return images_authors_presentation_data = helpers.run_query1(query)
+    app.get('/', (req, res) => {
+        res.send('root')
+    })
 
-    res.send(search_terms)
-})
+    app.post('/searchImagesByText', async (req, res) => {
+        let search_terms = req.body;
+        search_terms = search_terms.search_terms;
+        search_terms = search_terms.split(" ");
+        res.send(await helpers.get_images_authors_presentation_data(db, storage_client, search_terms))
+    })
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-})
+    app.listen(port, () => {
+        console.log(`Example app listening at http://localhost:${port}`)
+    })
 
 
-// URL: localhost:8080/searchImagesByImages
-// search_terms = set(gcp_object_detection(img)) + set(gcp_logo_detection(img))
-// query = build_sql_query(search_terms)
-// return images_authors_presentation_data = query1(query)
+    // URL: localhost:8080/searchImagesByImages
+    // search_terms = set(gcp_object_detection(img)) + set(gcp_logo_detection(img))
+    // query = build_sql_query(search_terms)
+    // return images_authors_presentation_data = query1(query)
+});
 

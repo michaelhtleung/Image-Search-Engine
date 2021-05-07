@@ -33,7 +33,6 @@ function make_insert_photo_data_to_db(uri, search_terms) {
 
         var mysql = require('mysql');
         const fs = require('fs');
-
         let rawdata = fs.readFileSync('./credentials/shopify_login.json');
         let config = JSON.parse(rawdata);
 
@@ -54,6 +53,7 @@ function make_insert_photo_data_to_db(uri, search_terms) {
                         // insert into images_search_terms table:
                         const images_search_terms_query = `INSERT INTO images_search_terms(image_id, search_term_id ) values (${image_id}, ${search_term_id});`;
                         con.query(images_search_terms_query , function (err, result, fields) {
+                            // if there's an error from a duplicate row, ignore it
                             if (!err) console.log(result);
                             smallback(null);
                         });
@@ -62,6 +62,7 @@ function make_insert_photo_data_to_db(uri, search_terms) {
                         let insert_term_query = `INSERT INTO search_term (term) values ('${term}')`;
                         con.query(insert_term_query, function (err, insert_term_query_result, fields) {
                             if (err) {
+                                // if there's an error from an error from a duplicate row, find the original row's ID
                                 const find_term_query = `SELECT id FROM search_term WHERE term="${term}"`;
                                 con.query(find_term_query, function(err, find_term_result, fields) {
                                     if (err) throw err;
