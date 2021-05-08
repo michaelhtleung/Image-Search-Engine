@@ -13,6 +13,9 @@ db.connect(function(err) {
     // Imports the Google Cloud client library
     const {Storage} = require('@google-cloud/storage');
     const storage_client = new Storage();
+    // Imports the Google Cloud client libraries
+    const vision = require('@google-cloud/vision');
+    const vision_client = new vision.ImageAnnotatorClient();
 
     // web server packages
     const port = 8080
@@ -30,20 +33,24 @@ db.connect(function(err) {
     })
 
     app.post('/searchImagesByText', async (req, res) => {
-        let search_terms = req.body;
+        let search_terms = req.body || '';
         search_terms = search_terms.search_terms;
         search_terms = search_terms.split(" ");
         res.send(await helpers.searchImagesByText_get_images_authors_presentation_data (db, storage_client, search_terms))
     })
 
+    app.post('/searchImagesByImages', async (req, res) => {
+        let search_terms = ''
+        let searchTextFromImage = await vision_client.objectLocalization(req.body.search_image);
+        searchTextFromImage.forEach(text => {
+            search_terms += ` ${text}`;
+        });
+        search_terms = search_terms.split(" ");
+        res.send(await helpers.searchImagesByText_get_images_authors_presentation_data (db, storage_client, search_terms))
+    });
+
     app.listen(port, () => {
         console.log(`Example app listening at http://localhost:${port}`)
     })
-
-
-    // URL: localhost:8080/searchImagesByImages
-    // search_terms = set(gcp_object_detection(img)) + set(gcp_logo_detection(img))
-    // query = build_sql_query(search_terms)
-    // return images_authors_presentation_data = query1(query)
 });
 
