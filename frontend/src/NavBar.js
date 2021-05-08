@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function SearchAppBar() {
+export default function NavBar() {
     const classes = useStyles();
 
     return (
@@ -71,6 +71,8 @@ export default function SearchAppBar() {
             <AppBar position="static">
                 <Toolbar>
                     <AccountDisplay></AccountDisplay>
+
+                    {/*TextSearchBar:*/}
                     <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
@@ -84,6 +86,7 @@ export default function SearchAppBar() {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </div>
+
                 </Toolbar>
             </AppBar>
         </div>
