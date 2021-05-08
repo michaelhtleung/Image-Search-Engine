@@ -1,9 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import ImageSearchIcon from '@material-ui/icons/ImageSearch';
-
+import ImageIcon from '@material-ui/icons/Image';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -33,9 +31,9 @@ export default function ImageUploadButton() {
                     variant="contained"
                     color="primary"
                     component="span"
-                    startIcon={<ImageSearchIcon/>}
+                    startIcon={<ImageIcon/>}
                 >
-                    Upload Similar Image to Search by
+                    Upload Similar Image to Search
                 </Button>
             </label>
             <input accept="image/*" className={classes.input} id="icon-button-file" type="file" />
