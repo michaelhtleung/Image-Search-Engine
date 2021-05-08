@@ -66,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavBar() {
     let [searchText, setSearchText] = useState('');
+    let [searchImage, setSearchImage] = useState('');
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -73,7 +74,7 @@ export default function NavBar() {
                 <Toolbar>
                     <AccountDisplay></AccountDisplay>
                     <TextSearchBar searchText={searchText} callback={newSearchText => setSearchText(newSearchText)}></TextSearchBar>
-                    <ImageUploadButton></ImageUploadButton>
+                    <ImageUploadButton searchImage={searchImage} callback={newSearchImage => setSearchImage(newSearchImage)}></ImageUploadButton>
                     <SearchButton></SearchButton>
                 </Toolbar>
             </AppBar>
