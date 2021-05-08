@@ -15,6 +15,10 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import profilePicture from "./static/alice.jpg";
+import contentPicture1 from "./static/blue_chair.jpg";
+import contentPicture2 from "./static/brown_coat.jpg";
+import contentPicture3 from "./static/red_purse.jpg";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,18 +55,12 @@ export default function ImageCard() {
         <Card className={classes.root}>
             <CardHeader
                 avatar={
-                    <Avatar aria-label="recipe" className={classes.avatar}>
-                        A
-                    </Avatar>
+                    <Avatar aria-label="recipe" className={classes.avatar} src={profilePicture} alt={"Alice"}/>
                 }
                 title="Alice"
                 subheader="September 14, 2016"
             />
-            <CardMedia
-                className={classes.media}
-                image="/static/images/cards/paella.jpg"
-                title="Paella dish"
-            />
+            <CardMedia className={classes.media} image={contentPicture2} title="Paella dish"/>
         </Card>
     );
 }
