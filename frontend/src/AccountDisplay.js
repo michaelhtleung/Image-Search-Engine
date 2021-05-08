@@ -45,7 +45,7 @@ export default function AccountDisplay() {
         <Card className={classes.root}>
             <CardHeader
                 avatar={
-                    <Avatar aria-label="recipe" className={classes.avatar}>
+                    <Avatar aria-label="recipe" className={classes.avatar} src="./static/alice.jpg">
                         A
                     </Avatar>
                 }
