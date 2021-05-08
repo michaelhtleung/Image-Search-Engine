@@ -11,10 +11,10 @@ db.connect(function(err) {
     const helpers = require('./helpers')
 
     // web server packages
+    const port = 3000
     const express = require('express');
     const bodyParser = require('body-parser');
     const app = express();
-    const port = 3000
 
     // Imports the Google Cloud client library
     const {Storage} = require('@google-cloud/storage');
@@ -22,15 +22,15 @@ db.connect(function(err) {
 
     app.use(bodyParser.urlencoded({ extended: true }));
 
-    app.get('/', (req, res) => {
-        res.send('root')
+    app.get('/', async (req, res) => {
+        res.send(await helpers.root_get_images_authors_presentation_data(db, storage_client))
     })
 
     app.post('/searchImagesByText', async (req, res) => {
         let search_terms = req.body;
         search_terms = search_terms.search_terms;
         search_terms = search_terms.split(" ");
-        res.send(await helpers.get_images_authors_presentation_data(db, storage_client, search_terms))
+        res.send(await helpers.searchImagesByText_get_images_authors_presentation_data (db, storage_client, search_terms))
     })
 
     app.listen(port, () => {

@@ -1,14 +1,8 @@
-exports.get_images_authors_presentation_data = async (db, storage_client, search_terms) => {
-    query = build_query(search_terms)
-    images_authors_presentation_data = await run_query(query)
+const get_images_authors_presentation_data = async (db, storage_client, query) => {
+    let images_authors_presentation_data = await run_query(query)
     images_authors_presentation_data = await attach_image_data(storage_client, images_authors_presentation_data)
     return images_authors_presentation_data
 
-    function build_query(search_terms) {
-        return `SELECT image_id, author_id, first_name, datetime_upload, public, uri FROM images_search_terms as ist JOIN search_term as st JOIN image as i JOIN user as u
-        ON ist.search_term_id=st.id AND ist.image_id=i.id AND i.author_id=u.id
-        WHERE st.term IN (${search_terms.map((term)=>`"${term}"`).join(", ")})`;
-    }
     function run_query(query) {
         return new Promise(resolve => {
             db.query(query, (err, result) => {
@@ -42,3 +36,22 @@ exports.get_images_authors_presentation_data = async (db, storage_client, search
         return in_memory_img
     }
 };
+
+exports.searchImagesByText_get_images_authors_presentation_data = async (db, storage_client, search_terms) => {
+    return await get_images_authors_presentation_data(db, storage_client, build_query(search_terms))
+    function build_query(search_terms) {
+        return `SELECT image_id, author_id, first_name, datetime_upload, public, uri FROM images_search_terms as ist JOIN search_term as st JOIN image as i JOIN user as u
+        ON ist.search_term_id=st.id AND ist.image_id=i.id AND i.author_id=u.id
+        WHERE st.term IN (${search_terms.map((term)=>`"${term}"`).join(", ")})
+        LIMIT 4`;
+    }
+}
+
+exports.root_get_images_authors_presentation_data = async (db, storage_client) => {
+    return await get_images_authors_presentation_data(db, storage_client, build_query())
+    function build_query() {
+        return `SELECT DISTINCT image_id, author_id, first_name, datetime_upload, public, uri FROM images_search_terms as ist JOIN search_term as st JOIN image as i JOIN user as u
+        ON ist.search_term_id=st.id AND ist.image_id=i.id AND i.author_id=u.id
+        LIMIT 4;`;
+    }
+}
