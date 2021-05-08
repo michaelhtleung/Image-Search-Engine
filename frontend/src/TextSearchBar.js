@@ -58,8 +58,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function TextSearchBar() {
-    let [searchText, setSearchText] = useState('');
+export default function TextSearchBar(props) {
     const classes = useStyles();
     return (
         <div className={classes.search}>
@@ -73,8 +72,8 @@ export default function TextSearchBar() {
                     input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search' }}
-                value={searchText}
-                onChange={event => setSearchText(event.target.value)}
+                value={props.searchText}
+                onChange={event => props.callback(event.target.value)}
             />
         </div>
     );

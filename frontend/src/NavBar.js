@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import InputBase from '@material-ui/core/InputBase';
@@ -65,14 +65,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function NavBar() {
+    let [searchText, setSearchText] = useState('');
     const classes = useStyles();
-
     return (
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
                     <AccountDisplay></AccountDisplay>
-                    <TextSearchBar></TextSearchBar>
+                    <TextSearchBar searchText={searchText} callback={newSearchText => setSearchText(newSearchText)}></TextSearchBar>
                     <ImageUploadButton></ImageUploadButton>
                     <SearchButton></SearchButton>
                 </Toolbar>
