@@ -25,36 +25,35 @@ export default function SearchButton(props) {
                 color="default"
                 className={classes.button}
                 startIcon={<SearchIcon />}
-                onClick={async () => {
-                    // alert('click');
-                    let uri = 'http://localhost:8080/searchImagesByText';
-                    let searchText = props.searchText;
-                    // let searchText = 'belt'
-                    try {
-                    // if (props.searchImage !== 0) {
-                    //     // case: there is an attached image
-                    //     let searchTextFromImage = await axios.post(gcp_cv_uri, props.searchImage);
-                    //     searchText += ` ${searchTextFromImage }`;
-                    //     let cardData = await axios.post(uri, searchText);
-                    //     props.updateImageCardData(await cardData);
-                    // } else {
-                        // case: there is no attached image
-                        // let data = {search_terms: searchText};
-                        let data = new URLSearchParams();
-                        data.append('search_terms', searchText);
-                        let cardData = await axios.post(uri, data, {
-                            url: uri,
-                            method: 'post',
-                            data: data,
-                            headers: {
-                                "Content-Type": "application/x-www-form-urlencoded"
-                            },
-                        });
-                        // alert('POST response received');
-                        props.updateImageCardData(await cardData);
-                    } catch (error) {
-                        alert(error);
-                    }
+                onClick={
+                    async () => {
+                        // alert('click');
+                        let uri = 'http://localhost:8080/searchImagesByText';
+                        let searchText = props.searchText;
+                        try {
+                        // if (props.searchImage !== 0) {
+                        //     // case: there is an attached image
+                        //     let searchTextFromImage = await axios.post(gcp_cv_uri, props.searchImage);
+                        //     searchText += ` ${searchTextFromImage }`;
+                        //     let cardData = await axios.post(uri, searchText);
+                        //     props.updateImageCardData(await cardData);
+                        // } else {
+                            // case: there is no attached image
+                            let data = new URLSearchParams();
+                            data.append('search_terms', searchText);
+                            let cardData = await axios.post(uri, data, {
+                                url: uri,
+                                method: 'post',
+                                data: data,
+                                headers: {
+                                    "Content-Type": "application/x-www-form-urlencoded"
+                                },
+                            });
+                            // alert('POST response received');
+                            props.updateImageCardData(await cardData);
+                        } catch (error) {
+                            alert(error);
+                        }
                     // }
                 }}
             >
