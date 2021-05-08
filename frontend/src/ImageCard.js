@@ -39,17 +39,29 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function AccountDisplay() {
+export default function ImageCard() {
     const classes = useStyles();
+    const [expanded, setExpanded] = React.useState(false);
+
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
+
     return (
         <Card className={classes.root}>
             <CardHeader
                 avatar={
-                    <Avatar aria-label="recipe" className={classes.avatar} src="./static/alice.jpg">
+                    <Avatar aria-label="recipe" className={classes.avatar}>
                         A
                     </Avatar>
                 }
                 title="Alice"
+                subheader="September 14, 2016"
+            />
+            <CardMedia
+                className={classes.media}
+                image="/static/images/cards/paella.jpg"
+                title="Paella dish"
             />
         </Card>
     );
