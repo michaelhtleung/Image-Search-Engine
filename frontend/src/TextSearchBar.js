@@ -1,6 +1,6 @@
 import TextFieldsIcon from "@material-ui/icons/TextFields";
 import InputBase from "@material-ui/core/InputBase";
-import React from "react";
+import {React, useState} from "react";
 import {fade, makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -59,6 +59,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TextSearchBar() {
+    let [searchText, setSearchText] = useState('');
     const classes = useStyles();
     return (
         <div className={classes.search}>
@@ -72,6 +73,8 @@ export default function TextSearchBar() {
                     input: classes.inputInput,
                 }}
                 inputProps={{ 'aria-label': 'search' }}
+                value={searchText}
+                onChange={event => setSearchText(event.target.value)}
             />
         </div>
     );
