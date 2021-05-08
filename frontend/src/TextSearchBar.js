@@ -1,13 +1,7 @@
-import React from 'react';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import InputBase from '@material-ui/core/InputBase';
-import { fade, makeStyles } from '@material-ui/core/styles';
-import AccountDisplay from "./AccountDisplay";
-import ImageUploadButton from "./ImageUploadButton";
-import SearchButton from "./SearchButton";
-import TextFieldsIcon from '@material-ui/icons/TextFields';
-import TextSearchBar from "./TextSearchBar";
+import TextFieldsIcon from "@material-ui/icons/TextFields";
+import InputBase from "@material-ui/core/InputBase";
+import React from "react";
+import {fade, makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -64,19 +58,21 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function NavBar() {
+export default function TextSearchBar() {
     const classes = useStyles();
-
     return (
-        <div className={classes.root}>
-            <AppBar position="static">
-                <Toolbar>
-                    <AccountDisplay></AccountDisplay>
-                    <TextSearchBar></TextSearchBar>
-                    <ImageUploadButton></ImageUploadButton>
-                    <SearchButton></SearchButton>
-                </Toolbar>
-            </AppBar>
+        <div className={classes.search}>
+            <div className={classes.searchIcon}>
+                <TextFieldsIcon />
+            </div>
+            <InputBase
+                placeholder="Type Search Terms"
+                classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+            />
         </div>
     );
 }
