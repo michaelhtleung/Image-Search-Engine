@@ -35,7 +35,7 @@ function App() {
     let [imageCardData, setImageCardData] = useState(placeholderData);
     return (
         <div className="App">
-            <NavBar callback={(newImageCardData) => setImageCardData(newImageCardData)}></NavBar>
+            <NavBar updateImageCardData={(newImageCardData) => setImageCardData(newImageCardData)}></NavBar>
             <ContentDisplayRegion imageCardData={imageCardData}></ContentDisplayRegion>
         </div>
     );

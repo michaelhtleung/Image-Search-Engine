@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function IconLabelButtons() {
+export default function SearchButton(props) {
     const classes = useStyles();
 
     return (
@@ -24,6 +24,22 @@ export default function IconLabelButtons() {
                 color="default"
                 className={classes.button}
                 startIcon={<SearchIcon />}
+                onClick={async (event) => {
+                    // TODO: make axios call?
+                    // pseudocode:
+                    // let searchText = props.searchText;
+                    // if (props.searchImage !== 0) {
+                    //     // case: there is an attached image
+                    //     let searchTextFromImage = await axios.post(gcp_cv_uri, props.searchImage);
+                    //     searchText += ` ${searchTextFromImage }`;
+                    //     let cardData = await axios.post(uri, searchText);
+                    //     props.updateImageCardData(await cardData);
+                    // } else {
+                    //     // case: there is no attached image
+                    //     let cardData = await axios.post(uri, searchText);
+                    //     props.updateImageCardData(await cardData);
+                    // }
+                }}
             >
                 Run Search
             </Button>

@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function NavBar() {
+export default function NavBar(props) {
     let [searchText, setSearchText] = useState('');
     let [searchImage, setSearchImage] = useState('');
     const classes = useStyles();
@@ -75,7 +75,7 @@ export default function NavBar() {
                     <AccountDisplay></AccountDisplay>
                     <TextSearchBar searchText={searchText} callback={newSearchText => setSearchText(newSearchText)}></TextSearchBar>
                     <ImageUploadButton searchImage={searchImage} callback={newSearchImage => setSearchImage(newSearchImage)}></ImageUploadButton>
-                    <SearchButton></SearchButton>
+                    <SearchButton searchText={searchText} searchImage={searchImage} updateImageCardData={props.updateImageCardData}></SearchButton>
                 </Toolbar>
             </AppBar>
         </div>
