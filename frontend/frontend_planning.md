@@ -20,11 +20,11 @@
 
 # Where state lives:
 - App (relevant photos with the poster and posted date)
-	- NavBar
+	- NavBar (search text, search image)
 		- AccountDisplay
 			- Avatar
-		- TextSearchBar (search text)
-		- ImageUploadButton (search image)
+		- TextSearchBar 
+		- ImageUploadButton 
 		- SearchButton
 	- ContentDisplayRegion
 		- ImageCard
