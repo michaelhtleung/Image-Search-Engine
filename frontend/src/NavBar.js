@@ -8,6 +8,7 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountDisplay from "./AccountDisplay";
 import ImageUploadButton from "./ImageUploadButton";
+import SearchButton from "./SearchButton";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -72,9 +73,7 @@ export default function NavBar() {
             <AppBar position="static">
                 <Toolbar>
                     <AccountDisplay></AccountDisplay>
-
-                    {/*TextSearchBar:*/}
-                    <div className={classes.search}>
+                    </*TextSearchBar:*/div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
@@ -87,8 +86,8 @@ export default function NavBar() {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </div>
-
                     <ImageUploadButton></ImageUploadButton>
+                    <SearchButton></SearchButton>
                 </Toolbar>
             </AppBar>
         </div>
