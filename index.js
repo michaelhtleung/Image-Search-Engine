@@ -10,16 +10,19 @@ db.connect(function(err) {
     // custom packages
     const helpers = require('./helpers')
 
-    // web server packages
-    const port = 8080
-    const express = require('express');
-    const bodyParser = require('body-parser');
-    const app = express();
-
     // Imports the Google Cloud client library
     const {Storage} = require('@google-cloud/storage');
     const storage_client = new Storage();
 
+    // web server packages
+    const port = 8080
+    const express = require('express');
+    const app = express();
+
+    var cors = require('cors');
+    app.use(cors());
+
+    const bodyParser = require('body-parser');
     app.use(bodyParser.urlencoded({ extended: true }));
 
     app.get('/', async (req, res) => {

@@ -4,7 +4,7 @@ export default function ContentDisplayRegion(props) {
     return (
         <div>
             <ul>
-                {props.imageCardData.map(cardData => {
+                {props.imageCardData.data.map(cardData => {
                     return (
                         <ImageCard
                             cardData={cardData}
