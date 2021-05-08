@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
@@ -15,7 +15,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import profilePicture from "./static/alice.jpg";
+import profilePicture1 from "./static/alice.jpg";
+import profilePicture2 from "./static/bob.jpg";
 import contentPicture1 from "./static/blue_chair.jpg";
 import contentPicture2 from "./static/brown_coat.jpg";
 import contentPicture3 from "./static/red_purse.jpg";
@@ -43,13 +44,40 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ImageCard() {
+export default function ImageCard(props) {
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
+    let [profilePicture, setProfilePicture] = useState(0);
+    let [image, setImage] = useState(0);
+    // let profilePicture = 0;
+    // let image = 0;
+    useEffect(() => {
+        if (props.cardData.author_id == 1) {
+            setProfilePicture(profilePicture1);
+        } else if (props.cardData.author_id == 2) {
+            setProfilePicture(profilePicture2);
+        }
+        // TODO: replace with pixels when data fetching is done
+        if (props.cardData.image_id == 1) {
+            setImage(contentPicture1);
+        } else if (props.cardData.image_id == 2) {
+            setImage(contentPicture2);
+        } else if (props.cardData.image_id == 3) {
+            setImage(contentPicture3);
+        }
+        // if (props.cardData.author_id == 1) {
+        //     profilePicture = profilePicture1;
+        // } else if (props.cardData.author_id == 2) {
+        //     profilePicture = profilePicture2;
+        // }
+        // // TODO: replace with pixels when data fetching is done
+        // if (props.cardData.image_id == 1) {
+        //     image = contentPicture1;
+        // } else if (props.cardData.image_id == 2) {
+        //     image = contentPicture2;
+        // } else if (props.cardData.image_id == 3) {
+        //     image = contentPicture3;
+        // }
+    });
 
     return (
         <Card className={classes.root}>
@@ -57,10 +85,11 @@ export default function ImageCard() {
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar} src={profilePicture} alt={"Alice"}/>
                 }
-                title="Alice"
-                subheader="September 14, 2016"
+                title={props.cardData.first_name}
+                subheader={props.cardData.datetime_upload}
             />
-            <CardMedia className={classes.media} image={contentPicture2} title="Paella dish"/>
+            <CardMedia className={classes.media} image={image}/>
+            {/*<CardMedia className={classes.media} image={props.pixels} title="Paella dish"/>*/}
         </Card>
     );
 }
