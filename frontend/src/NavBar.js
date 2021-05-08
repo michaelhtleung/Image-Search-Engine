@@ -7,6 +7,7 @@ import InputBase from '@material-ui/core/InputBase';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountDisplay from "./AccountDisplay";
+import ImageUploadButton from "./ImageUploadButton";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -78,7 +79,7 @@ export default function NavBar() {
                             <SearchIcon />
                         </div>
                         <InputBase
-                            placeholder="Search…"
+                            placeholder="Type Search Terms"
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,
@@ -87,6 +88,7 @@ export default function NavBar() {
                         />
                     </div>
 
+                    <ImageUploadButton></ImageUploadButton>
                 </Toolbar>
             </AppBar>
         </div>
