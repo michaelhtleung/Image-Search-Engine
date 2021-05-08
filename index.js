@@ -11,7 +11,7 @@ db.connect(function(err) {
     const helpers = require('./helpers')
 
     // web server packages
-    const port = 3000
+    const port = 8080
     const express = require('express');
     const bodyParser = require('body-parser');
     const app = express();
