@@ -13,13 +13,14 @@ app.enable('trust proxy');
 app.use(express.json());
 
 
-// var cors = require('cors');
-// app.use(cors());
+// needed for dev, not for prod:
+var cors = require('cors');
+app.use(cors());
+
 
 // Serve static files from the React app
 // const path = require('path');
-// app.use(express.static(path.join(__dirname, 'client/build')));
-
+// app.use(express.static(
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: true }));
 

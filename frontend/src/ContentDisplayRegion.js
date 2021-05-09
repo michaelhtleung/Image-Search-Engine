@@ -2,18 +2,7 @@ import ImageCard from "./ImageCard";
 import Typography from '@material-ui/core/Typography';
 
 export default function ContentDisplayRegion(props) {
-    if (props.imageCardData.data.length == 0) {
-        return (
-            <div>
-                <Typography variant="h4">
-                    No matching images found.
-                </Typography>
-                <Typography variant="h6">
-                    Please try another search query.
-                </Typography>
-            </div>
-        );
-    } else {
+    if (props.imageCardData.data !== undefined && props.imageCardData.data.length >= 1) {
         return (
             <div>
                 <ul>
@@ -26,6 +15,17 @@ export default function ContentDisplayRegion(props) {
                         );
                     })}
                 </ul>
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                <Typography variant="h4">
+                    No matching images found.
+                </Typography>
+                <Typography variant="h6">
+                    Please try another search query.
+                </Typography>
             </div>
         );
     }
