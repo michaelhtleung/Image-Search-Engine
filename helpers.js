@@ -1,3 +1,5 @@
+const image_limit = 20;
+
 const get_images_authors_presentation_data = async (db, storage_client, query) => {
     let images_authors_presentation_data = await run_query(query)
     images_authors_presentation_data = await attach_image_data(storage_client, images_authors_presentation_data)
@@ -40,7 +42,7 @@ exports.searchImagesByText_get_images_authors_presentation_data = async (db, sto
         return `SELECT image_id, author_id, first_name, datetime_upload, public, uri FROM images_search_terms as ist JOIN search_term as st JOIN image as i JOIN user as u
         ON ist.search_term_id=st.id AND ist.image_id=i.id AND i.author_id=u.id
         WHERE st.term IN (${search_terms.map((term)=>`"${term}"`).join(", ")})
-        LIMIT 4`;
+        LIMIT ${image_limit}`;
     }
 }
 
@@ -49,6 +51,6 @@ exports.root_get_images_authors_presentation_data = async (db, storage_client) =
     function build_query() {
         return `SELECT DISTINCT image_id, author_id, first_name, datetime_upload, public, uri FROM images_search_terms as ist JOIN search_term as st JOIN image as i JOIN user as u
         ON ist.search_term_id=st.id AND ist.image_id=i.id AND i.author_id=u.id
-        LIMIT 4;`;
+        LIMIT ${image_limit}`;
     }
 }

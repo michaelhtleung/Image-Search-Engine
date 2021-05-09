@@ -6,7 +6,8 @@
     - [ ] from an image (search for similar images)
     
 ## How to use Application (as a User):
-Click [HERE](https://shopify-dev-challenge-f21.uc.r.appspot.com/) and search from almost 2000 images of fashion items. I assumed that a fashion merchant would find it useful to query images by their content form their store on Shopify.
+Click [HERE](https://shopify-dev-challenge-f21.uc.r.appspot.com/) and search from almost 2000 images of fashion items. 
+I assumed that a fashion merchant would find it useful to query images by their content form their store on Shopify.
 
 Enter your search terms in the text field and press "RUN SEARCH" to get results.
 

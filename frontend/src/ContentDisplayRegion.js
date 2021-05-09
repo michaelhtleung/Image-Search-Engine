@@ -10,7 +10,15 @@ const useStyles = makeStyles(() => ({
 
 export default function ContentDisplayRegion(props) {
     const classes = useStyles();
-    if (props.imageCardData.data !== undefined && props.imageCardData.data.length >= 1) {
+    if (props.imageCardData === -1) {
+        return (
+            <div>
+                <Typography variant="h4">
+                    Please enter a search query.
+                </Typography>
+            </div>
+        );
+    } else if (props.imageCardData.data !== undefined && props.imageCardData.data.length >= 1) {
         return (
             <div>
                 <ul className={classes.ul}>
