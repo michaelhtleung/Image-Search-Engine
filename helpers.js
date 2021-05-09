@@ -3,13 +3,8 @@ const get_images_authors_presentation_data = async (db, storage_client, query) =
     images_authors_presentation_data = await attach_image_data(storage_client, images_authors_presentation_data)
     return images_authors_presentation_data
 
-    function run_query(query) {
-        return new Promise(resolve => {
-            db.query(query, (err, result) => {
-                if (err) throw err;
-                return resolve(result);
-            });
-        });
+    async function run_query(query) {
+        return await db.query(query);
     }
     async function attach_image_data(storage_client, presentation_data) {
         let pixels = presentation_data.map(post => get_image_pixels(storage_client, post.uri));

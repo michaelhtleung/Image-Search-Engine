@@ -4,3 +4,5 @@ credentials
 frontend/node_modules
 assets/upload
 SECRET_README.md
+app.standard.yaml
+frontend/app.standard.yaml
