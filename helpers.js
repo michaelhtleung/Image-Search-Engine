@@ -1,4 +1,4 @@
-const image_limit = 20;
+const image_limit = 100;
 
 const get_images_authors_presentation_data = async (db, storage_client, query) => {
     let images_authors_presentation_data = await run_query(query)
