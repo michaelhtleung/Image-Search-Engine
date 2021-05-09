@@ -1,11 +1,19 @@
 import ImageCard from "./ImageCard";
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(() => ({
+    ul: {
+        "padding-inline-end": "40px"
+    },
+}));
 
 export default function ContentDisplayRegion(props) {
+    const classes = useStyles();
     if (props.imageCardData.data !== undefined && props.imageCardData.data.length >= 1) {
         return (
             <div>
-                <ul>
+                <ul className={classes.ul}>
                     {props.imageCardData.data.map(cardData => {
                         return (
                             <ImageCard

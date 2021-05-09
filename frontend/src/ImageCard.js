@@ -24,6 +24,9 @@ import contentPicture3 from "./static/red_purse.jpg";
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
+        "margin": "auto auto",
+        "margin-top": "10px",
+        "margin-bottom": "10px",
     },
     media: {
         height: 0,
