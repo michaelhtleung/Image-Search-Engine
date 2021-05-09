@@ -20,6 +20,7 @@ import profilePicture2 from "./static/bob.jpg";
 import contentPicture1 from "./static/blue_chair.jpg";
 import contentPicture2 from "./static/brown_coat.jpg";
 import contentPicture3 from "./static/red_purse.jpg";
+import moment from 'moment';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -69,10 +70,9 @@ export default function ImageCard(props) {
                     <Avatar aria-label="recipe" className={classes.avatar} src={profilePicture} alt={"Alice"}/>
                 }
                 title={props.cardData.first_name}
-                subheader={props.cardData.datetime_upload}
+                subheader={moment(props.cardData.datetime_upload).format('MMMM Do YYYY, h:mm A')}
             />
             <CardMedia className={classes.media} image={"data:image/png;base64," + props.cardData.pixels}/>
-            {/*<CardMedia className={classes.media} image={props.pixels} title="Paella dish"/>*/}
         </Card>
     );
 }
