@@ -1,5 +1,3 @@
 dispatch:
-  - url: "shopify-dev-challenge-f21.uc.r.appspot.com/"
-    service: default
   - url: "*/api/*"
     service: backend
