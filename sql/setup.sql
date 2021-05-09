@@ -1,5 +1,6 @@
-DROP DATABASE shopify;
-CREATE DATABASE shopify;
+-- It's expensive to pay google to label these images :'(
+-- DROP DATABASE shopify;
+-- CREATE DATABASE shopify;
 USE shopify;
 
 CREATE TABLE user (
