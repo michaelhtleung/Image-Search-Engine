@@ -13,7 +13,15 @@ const useStyles = makeStyles((theme) => ({
     },
     toolbar: {
         'min-height': '100px',
+        display: "flex",
+        "align-items": "center",
+        "justify-content": "space-between",
     },
+    interactiveElements: {
+        "display": "flex",
+        "max-width": "800px",
+        "align-items": "center",
+    }
 }));
 
 export default function NavBar(props) {
@@ -25,9 +33,11 @@ export default function NavBar(props) {
             <AppBar position="static">
                 <Toolbar className={classes.toolbar}>
                     <AccountDisplay></AccountDisplay>
-                    <TextSearchBar searchText={searchText} callback={newSearchText => setSearchText(newSearchText)}></TextSearchBar>
-                    <ImageUploadButton searchImage={searchImage} callback={newSearchImage => setSearchImage(newSearchImage)}></ImageUploadButton>
-                    <SearchButton searchText={searchText} searchImage={searchImage} updateImageCardData={props.updateImageCardData}></SearchButton>
+                    <div className={classes.interactiveElements}>
+                        <TextSearchBar searchText={searchText} callback={newSearchText => setSearchText(newSearchText)}></TextSearchBar>
+                        <ImageUploadButton searchImage={searchImage} callback={newSearchImage => setSearchImage(newSearchImage)}></ImageUploadButton>
+                        <SearchButton searchText={searchText} searchImage={searchImage} updateImageCardData={props.updateImageCardData}></SearchButton>
+                    </div>
                 </Toolbar>
             </AppBar>
         </div>
