@@ -11,7 +11,7 @@ function App() {
         try {
             let cardData = await axios.get(uri);
             // alert('GET response received');
-            setImageCardData(await cardData);
+            setImageCardData(cardData);
         } catch (error) {
             alert(error);
         }

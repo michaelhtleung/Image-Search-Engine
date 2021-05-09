@@ -47,36 +47,12 @@ const useStyles = makeStyles((theme) => ({
 export default function ImageCard(props) {
     const classes = useStyles();
     let [profilePicture, setProfilePicture] = useState(0);
-    let [image, setImage] = useState(0);
-    // let profilePicture = 0;
-    // let image = 0;
     useEffect(() => {
         if (props.cardData.author_id == 1) {
             setProfilePicture(profilePicture1);
         } else if (props.cardData.author_id == 2) {
             setProfilePicture(profilePicture2);
         }
-        // TODO: replace with pixels when data fetching is done
-        if (props.cardData.image_id == 1) {
-            setImage(contentPicture1);
-        } else if (props.cardData.image_id == 2) {
-            setImage(contentPicture2);
-        } else if (props.cardData.image_id == 3) {
-            setImage(contentPicture3);
-        }
-        // if (props.cardData.author_id == 1) {
-        //     profilePicture = profilePicture1;
-        // } else if (props.cardData.author_id == 2) {
-        //     profilePicture = profilePicture2;
-        // }
-        // // TODO: replace with pixels when data fetching is done
-        // if (props.cardData.image_id == 1) {
-        //     image = contentPicture1;
-        // } else if (props.cardData.image_id == 2) {
-        //     image = contentPicture2;
-        // } else if (props.cardData.image_id == 3) {
-        //     image = contentPicture3;
-        // }
     });
 
     return (
@@ -88,7 +64,7 @@ export default function ImageCard(props) {
                 title={props.cardData.first_name}
                 subheader={props.cardData.datetime_upload}
             />
-            <CardMedia className={classes.media} image={image}/>
+            <CardMedia className={classes.media} image={"data:image/png;base64," + props.cardData.pixels}/>
             {/*<CardMedia className={classes.media} image={props.pixels} title="Paella dish"/>*/}
         </Card>
     );

@@ -33,7 +33,9 @@ const get_images_authors_presentation_data = async (db, storage_client, query) =
         let bucketName = uri.split("/").reverse()[1]
         let options = {}
         let in_memory_img = await storage_client.bucket(bucketName).file(fileName).download(options);
-        return in_memory_img
+        in_memory_img = new Buffer.from(in_memory_img[0]);
+        in_memory_img = in_memory_img.toString("base64");
+        return in_memory_img;
     }
 };
 
