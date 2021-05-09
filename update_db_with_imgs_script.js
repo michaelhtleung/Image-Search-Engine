@@ -12,7 +12,7 @@ async function main() {
     try{
         let file_names = await get_gcp_file_names(); // array
         // console.log(file_names)
-        file_names = file_names.slice(0, 50)
+        // file_names = file_names.slice(0, 10)
         console.log('Got file names');
         let gcsUris = file_names.map((file_name) => `gs://${bucketName}/${file_name}`);
         // console.log(gcsUris)
@@ -46,7 +46,8 @@ function make_insert_photo_data_to_db(uri, search_terms) {
 
         con.connect(function(err) {
             if (err) throw err;
-            const image_query = `INSERT INTO image( author_id, uri, public, pixels_width, pixels_height, datetime_upload) values ( 1, "${uri}", 0, 0, 0, "${now}");`
+            let user_id = global_file_index < 600 ? 1 : 2;
+            const image_query = `INSERT INTO image( author_id, uri, public, pixels_width, pixels_height, datetime_upload) values ( ${user_id}, "${uri}", 0, 0, 0, "${now}");`
             con.query(image_query, function (err, image_query_result, fields) {
                 if (err) throw err;
                 console.log(`file_index: ${global_file_index}`);
