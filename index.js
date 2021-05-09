@@ -128,7 +128,7 @@ app.use(async (req, res, next) => {
 
 
 // endpoints:
-app.get('/', async (req, res) => {
+app.get('/api/', async (req, res) => {
     pool = pool || (await createPoolAndEnsureSchema());
     try {
         res.send(await helpers.root_get_images_authors_presentation_data(pool, storage_client))
@@ -137,7 +137,7 @@ app.get('/', async (req, res) => {
     }
 })
 
-app.post('/searchImagesByText', async (req, res) => {
+app.post('/api/searchImagesByText', async (req, res) => {
     pool = pool || (await createPoolAndEnsureSchema());
     try {
         let search_terms = req.body;

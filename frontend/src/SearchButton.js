@@ -28,7 +28,9 @@ export default function SearchButton(props) {
                 onClick={
                     async () => {
                         // alert('click');
+                        // local:
                         // let uri = 'http://localhost:8080/searchImagesByText';
+                        // production:
                         let uri = 'https://shopify-dev-challenge-f21.uc.r.appspot.com/api/searchImagesByText';
                         let searchText = props.searchText;
                         try {
