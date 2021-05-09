@@ -1,6 +1,6 @@
 import TextFieldsIcon from "@material-ui/icons/TextFields";
 import InputBase from "@material-ui/core/InputBase";
-import {React, useState} from "react";
+import {React} from "react";
 import {fade, makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({

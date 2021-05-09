@@ -1,12 +1,10 @@
 import React, {useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import InputBase from '@material-ui/core/InputBase';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AccountDisplay from "./AccountDisplay";
 import ImageUploadButton from "./ImageUploadButton";
 import SearchButton from "./SearchButton";
-import TextFieldsIcon from '@material-ui/icons/TextFields';
 import TextSearchBar from "./TextSearchBar";
 
 const useStyles = makeStyles((theme) => ({
