@@ -20,7 +20,7 @@ Try these search terms to get started:
 6. hat
 7. necklace
 8. pants
-9. shoes
+9. shoe
 10. top
 
 ## How to use Application (as a Developer):
