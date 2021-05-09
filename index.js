@@ -1,9 +1,11 @@
 // mysql set up
 var mysql = require('mysql');
-const fs = require('fs');
-let rawdata = fs.readFileSync('./credentials/shopify_login.json');
-let config = JSON.parse(rawdata);
-var db = mysql.createConnection(config);
+var db = mysql.createConnection({
+    host: process.env.HOST,
+    user: process.env.USER,
+    password: process.env.PASSWORD,
+    database: process.env.DATABASE,
+});
 db.connect(function(err) {
     if (err) throw err;
 
