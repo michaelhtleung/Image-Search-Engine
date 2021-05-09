@@ -26,7 +26,10 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: 345,
         "margin": "auto auto",
         "margin-top": "10px",
-        "margin-bottom": "10px",
+        "margin-bottom": "18px",
+    },
+    cardHeader: {
+        "text-align": "left",
     },
     media: {
         height: 0,
@@ -61,6 +64,7 @@ export default function ImageCard(props) {
     return (
         <Card className={classes.root}>
             <CardHeader
+                className={classes.cardHeader}
                 avatar={
                     <Avatar aria-label="recipe" className={classes.avatar} src={profilePicture} alt={"Alice"}/>
                 }
