@@ -30,7 +30,7 @@ export default function ImageUploadButton(props) {
                 onChange={event => {
                     setButtonColor('primary');
                     setButtonText('Image Attached')
-                    props.callback(event.target.value);
+                    props.updateSearchImage(event.target.value);
                 }}
             />
             <label htmlFor="contained-button-file">
