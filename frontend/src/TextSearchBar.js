@@ -2,6 +2,7 @@ import TextFieldsIcon from "@material-ui/icons/TextFields";
 import InputBase from "@material-ui/core/InputBase";
 import {React} from "react";
 import {fade, makeStyles} from "@material-ui/core/styles";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -60,6 +61,37 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TextSearchBar(props) {
     const classes = useStyles();
+    function keyPress(e){
+        if(e.keyCode == 13){
+            // alert('enter')
+            async function run_search() {
+                // alert('click');
+                // local:
+                // let uri = 'http://localhost:8080/searchImagesByText';
+                // production:
+                let uri = 'https://shopify-dev-challenge-f21.uc.r.appspot.com/api/searchImagesByText';
+                let searchText = props.searchText;
+                try {
+                    let data = new URLSearchParams();
+                    data.append('search_terms', searchText);
+                    let cardData = await axios.post(uri, data, {
+                        url: uri,
+                        method: 'post',
+                        data: data,
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                    });
+                    // alert('POST response received');
+                    props.updateImageCardData(await cardData);
+                } catch (error) {
+                    alert(error);
+                }
+            };
+            run_search();
+        }
+    }
+
     return (
         <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -73,7 +105,8 @@ export default function TextSearchBar(props) {
                 }}
                 inputProps={{ 'aria-label': 'search' }}
                 value={props.searchText}
-                onChange={event => props.callback(event.target.value)}
+                onChange={event => props.updateSearchText(event.target.value)}
+                onKeyDown={keyPress}
             />
         </div>
     );
