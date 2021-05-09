@@ -1,2 +1,7 @@
 runtime: nodejs10
 service: backend
+env_variables:
+  HOST: 34.121.59.90
+  USER: root
+  PASSWORD: root
+  DATABASE: shopify

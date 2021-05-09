@@ -7,7 +7,8 @@ import axios from "axios";
 function App() {
     let [imageCardData, setImageCardData] = useState({data: []});
     useEffect(async () => {
-        let uri = 'http://localhost:8080/';
+        // let uri = 'http://localhost:8080/';
+        let uri = 'https://shopify-dev-challenge-f21.uc.r.appspot.com/api/';
         try {
             let cardData = await axios.get(uri);
             // alert('GET response received');

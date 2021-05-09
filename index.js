@@ -25,8 +25,8 @@ db.connect(function(err) {
     // app.use(cors());
 
     // Serve static files from the React app
-    const path = require('path');
-    app.use(express.static(path.join(__dirname, 'client/build')));
+    // const path = require('path');
+    // app.use(express.static(path.join(__dirname, 'client/build')));
 
     const bodyParser = require('body-parser');
     app.use(bodyParser.urlencoded({ extended: true }));
