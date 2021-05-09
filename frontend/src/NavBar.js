@@ -35,7 +35,7 @@ export default function NavBar(props) {
                     <AccountDisplay></AccountDisplay>
                     <div className={classes.interactiveElements}>
                         <TextSearchBar searchText={searchText} callback={newSearchText => setSearchText(newSearchText)}></TextSearchBar>
-                        <ImageUploadButton searchImage={searchImage} callback={newSearchImage => setSearchImage(newSearchImage)}></ImageUploadButton>
+                        {/*<ImageUploadButton searchImage={searchImage} callback={newSearchImage => setSearchImage(newSearchImage)}></ImageUploadButton>*/}
                         <SearchButton searchText={searchText} searchImage={searchImage} updateImageCardData={props.updateImageCardData}></SearchButton>
                     </div>
                 </Toolbar>

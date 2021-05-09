@@ -2,5 +2,6 @@
 node_modules
 credentials
 frontend/node_modules
+frontend/deploy/build
 assets/upload
 SECRET_README.md
