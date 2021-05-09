@@ -6,6 +6,9 @@ const useStyles = makeStyles(() => ({
     ul: {
         "padding-inline-end": "40px"
     },
+    message: {
+        "margin-top": "40px"
+    }
 }));
 
 export default function ContentDisplayRegion(props) {
@@ -13,7 +16,7 @@ export default function ContentDisplayRegion(props) {
     if (props.imageCardData === -1) {
         return (
             <div>
-                <Typography variant="h4">
+                <Typography className={classes.message} variant="h4">
                     Please enter a search query.
                 </Typography>
             </div>
@@ -36,7 +39,7 @@ export default function ContentDisplayRegion(props) {
     } else {
         return (
             <div>
-                <Typography variant="h4">
+                <Typography className={classes.message} variant="h4">
                     No matching images found.
                 </Typography>
                 <Typography variant="h6">
