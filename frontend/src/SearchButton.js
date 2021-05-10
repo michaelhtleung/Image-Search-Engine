@@ -44,8 +44,8 @@ export default function SearchButton(props) {
                                     }
                                 });
                                 props.updateImageCardData(await cardData);
-                                // TODO: empty search text after submission
-                                } else {
+                                props.updateSearchImage('');
+                            } else {
                                     // case: there is no attached image
                                     uri = `${uri}searchImagesByText`
                                     let data = new URLSearchParams();

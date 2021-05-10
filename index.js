@@ -172,7 +172,6 @@ app.post('/api/searchImagesByImages', async(req, res) => {
 
         imageBuffer = buff;
         let search_terms = await helpers.detect_objects_locally(vision_client, imageBuffer);
-        search_terms = search_terms.split(" ");
         res.send(await helpers.searchImagesByText_get_images_authors_presentation_data (pool, storage_client, search_terms))
     } catch(error) {
         res.status(500).send(error).end();

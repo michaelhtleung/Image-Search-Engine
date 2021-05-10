@@ -15,8 +15,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ImageUploadButton(props) {
-    let [buttonColor, setButtonColor] = useState("");
-    let [buttonText, setButtonText] = useState("Upload Similar Image to Search");
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -28,8 +26,6 @@ export default function ImageUploadButton(props) {
                 type="file"
                 onChange={event => {
                     if (event.target.files && event.target.files[0]) {
-                        setButtonColor('primary');
-                        setButtonText('Image Attached')
                         let reader = new FileReader();
                         reader.readAsDataURL(event.target.files[0]);
                         reader.onload = (e) => {
@@ -45,11 +41,11 @@ export default function ImageUploadButton(props) {
             <label htmlFor="contained-button-file">
                 <Button
                     variant="contained"
-                    color={buttonColor}
+                    color={props.searchImage === '' ? '' : 'primary'}
                     component="span"
                     startIcon={<ImageIcon/>}
                 >
-                    {buttonText}
+                    {props.searchImage === '' ? 'Upload Similar Image to Search' : 'Image Attached'}
                 </Button>
             </label>
         </div>

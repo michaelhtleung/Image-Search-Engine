@@ -61,10 +61,12 @@ exports.detect_objects_locally = async (vision_client, imageBuffer) => {
     };
     const [result] = await vision_client.objectLocalization(request);
     const objects = result.localizedObjectAnnotations;
-    let search_terms = '';
-    objects.forEach(object => {
-        console.log(`Name: ${object.name}`);
-        search_terms += `${object.name}`;
-    });
-    return search_terms;
+    let max_index = 0;
+    for (let i = 0; i < objects.length; i++){
+        if (objects[i].score > objects[max_index].score) {
+            max_index = i;
+        }
+    }
+    console.log(objects[max_index].name);
+    return [objects[max_index].name];
 }

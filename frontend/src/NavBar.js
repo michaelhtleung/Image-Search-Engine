@@ -42,11 +42,13 @@ export default function NavBar(props) {
                         </TextSearchBar>
                         <ImageUploadButton
                             searchImage={searchImage}
-                            updateSearchImage={newSearchImage => setSearchImage(newSearchImage)}>
+                            updateSearchImage={newSearchImage => setSearchImage(newSearchImage)}
+                        >
                         </ImageUploadButton>
                         <SearchButton
                             searchText={searchText}
                             searchImage={searchImage}
+                            updateSearchImage={newSearchImage => setSearchImage(newSearchImage)}
                             updateImageCardData={props.updateImageCardData}
                         >
                         </SearchButton>
