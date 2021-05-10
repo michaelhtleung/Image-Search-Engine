@@ -8,10 +8,17 @@ function App() {
     // -1 means initial page load
     // [] means no results found
     let [imageCardData, setImageCardData] = useState(-1);
+    // let [detectedObjectName, setDetectedObjectName] = useState(undefined);
     return (
         <div className="App">
-            <NavBar updateImageCardData={(newImageCardData) => setImageCardData(newImageCardData)}></NavBar>
-            <ContentDisplayRegion imageCardData={imageCardData}></ContentDisplayRegion>
+            <NavBar
+                updateImageCardData={(newImageCardData) => setImageCardData(newImageCardData)}
+                updateDetectedObjectanem
+            ></NavBar>
+            <ContentDisplayRegion
+                imageCardData={imageCardData}
+                // detectedObjectName={detectedObjectName}
+            ></ContentDisplayRegion>
         </div>
     );
 }

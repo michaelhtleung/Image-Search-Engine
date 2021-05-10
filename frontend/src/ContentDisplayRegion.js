@@ -22,18 +22,27 @@ export default function ContentDisplayRegion(props) {
             </div>
         );
     } else if (props.imageCardData.data !== undefined && props.imageCardData.data.length >= 1) {
+        let element = <div></div>
+        // if (props.detectedObjectName !== undefined) {
+        //     element = <Typography className={classes.message} variant="h6">
+        //         Primary Object Detected: {props.detectedObjectName}
+        //     </Typography>
+        // }
         return (
             <div>
-                <ul className={classes.ul}>
-                    {props.imageCardData.data.map(cardData => {
-                        return (
-                            <ImageCard
-                                cardData={cardData}
-                                key={cardData.image_id.toString()}>
-                            </ImageCard>
-                        );
-                    })}
-                </ul>
+                {element}
+                <div>
+                    <ul className={classes.ul}>
+                        {props.imageCardData.data.map(cardData => {
+                            return (
+                                <ImageCard
+                                    cardData={cardData}
+                                    key={cardData.image_id.toString()}>
+                                </ImageCard>
+                            );
+                        })}
+                    </ul>
+                </div>
             </div>
         );
     } else {
