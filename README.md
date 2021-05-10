@@ -1,17 +1,16 @@
 # Shopify Developer Challenge Submission - Fall 2021:
 ## Completed Features:
 - [x] SEARCH function
-    - [ ] from characteristics of the images
     - [x] from text
-    - [ ] from an image (search for similar images)
+    - [x] from an image (search for similar images)
     
 ## How to use Application (as a User):
 Click [HERE](https://shopify-dev-challenge-f21.uc.r.appspot.com/) and search from almost 2000 images of fashion items. 
 I assumed that a fashion merchant would find it useful to query images by their content form their store on Shopify.
 
-Enter your search terms in the text field and press "RUN SEARCH" to get results.
+Enter your search terms in the text field and press "RUN SEARCH" to get results. Or click on the "Upload similar image" button to upload a search image and then click "Run search" to get search results.
 
-Try these search terms to get started:
+Try these any of these search terms to get started:
 
 1. bag
 2. belt

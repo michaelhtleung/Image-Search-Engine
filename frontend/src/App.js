@@ -9,6 +9,17 @@ function App() {
     // [] means no results found
     let [imageCardData, setImageCardData] = useState(-1);
     // let [detectedObjectName, setDetectedObjectName] = useState(undefined);
+    useEffect(() => {
+        alert(`Try searching fashion items like these:
+        1. bag
+        2. belt
+        3. bracelet
+        4. dress
+        5. glasses
+        6. hat
+        7. shoe
+        `);
+    }, []);
     return (
         <div className="App">
             <NavBar
