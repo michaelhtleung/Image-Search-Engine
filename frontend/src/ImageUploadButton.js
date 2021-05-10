@@ -26,11 +26,20 @@ export default function ImageUploadButton(props) {
                 id="contained-button-file"
                 multiple
                 type="file"
-                value={props.searchImage}
                 onChange={event => {
-                    setButtonColor('primary');
-                    setButtonText('Image Attached')
-                    props.updateSearchImage(event.target.value);
+                    if (event.target.files && event.target.files[0]) {
+                        setButtonColor('primary');
+                        setButtonText('Image Attached')
+                        let reader = new FileReader();
+                        reader.readAsDataURL(event.target.files[0]);
+                        reader.onload = (e) => {
+                            let str_base64 = e.target.result;
+                            let base64_location = str_base64.indexOf("base64");
+                            str_base64 = str_base64.slice(base64_location);
+                            str_base64 = str_base64.replace("base64,", "");
+                            props.updateSearchImage(str_base64);
+                        }
+                    }
                 }}
             />
             <label htmlFor="contained-button-file">

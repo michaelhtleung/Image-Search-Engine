@@ -54,3 +54,17 @@ exports.root_get_images_authors_presentation_data = async (db, storage_client) =
         LIMIT ${image_limit}`;
     }
 }
+
+exports.detect_objects_locally = async (vision_client, imageBuffer) => {
+    const request = {
+        image: {content: imageBuffer},
+    };
+    const [result] = await vision_client.objectLocalization(request);
+    const objects = result.localizedObjectAnnotations;
+    let search_terms = '';
+    objects.forEach(object => {
+        console.log(`Name: ${object.name}`);
+        search_terms += `${object.name}`;
+    });
+    return search_terms;
+}

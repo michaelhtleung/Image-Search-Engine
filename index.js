@@ -5,12 +5,22 @@ const helpers = require('./helpers')
 const {Storage} = require('@google-cloud/storage');
 const storage_client = new Storage();
 
+// Imports the Google Cloud client libraries
+const vision = require('@google-cloud/vision');
+// Creates a client
+const vision_client = new vision.ImageAnnotatorClient();
+
 // web server packages
 const express = require('express');
 const app = express();
 app.enable('trust proxy');
 // This middleware is available in Express v4.16.0 onwards
 app.use(express.json());
+
+var multer = require('multer');
+var upload = multer();
+// for parsing multipart/form-data
+app.use(upload.array());
 
 
 // needed for dev, not for prod:
@@ -149,6 +159,26 @@ app.post('/api/searchImagesByText', async (req, res) => {
     }
 })
 
+app.post('/api/searchImagesByImages', async(req, res) => {
+    pool = pool || (await createPoolAndEnsureSchema());
+    try {
+        let imageBuffer = req.body
+        imageBuffer = imageBuffer.base64
+
+        // Base64 encoded string
+        const base64 = imageBuffer;
+        // create a buffer
+        const buff = new Buffer(base64, 'base64');
+
+        imageBuffer = buff;
+        let search_terms = await helpers.detect_objects_locally(vision_client, imageBuffer);
+        search_terms = search_terms.split(" ");
+        res.send(await helpers.searchImagesByText_get_images_authors_presentation_data (pool, storage_client, search_terms))
+    } catch(error) {
+        res.status(500).send(error).end();
+    }
+});
+
 const PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`);
@@ -161,9 +191,3 @@ process.on('unhandledRejection', err => {
 });
 
 module.exports = server;
-
-// URL: localhost:8080/searchImagesByImages
-// search_terms = set(gcp_object_detection(img)) + set(gcp_logo_detection(img))
-// query = build_sql_query(search_terms)
-// return images_authors_presentation_data = query1(query)
-
